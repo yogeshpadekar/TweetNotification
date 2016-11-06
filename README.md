@@ -17,11 +17,14 @@ The app searches for the tweets for the given hashtag and when the app is in bac
 ### Launch Screen
 ![Launch screen](https://github.com/yogeshpadekar/TweetNotification/blob/master/Screenshots/Simulator%20Screen%20Shot%2006-Nov-2016%2C%206.17.52%20PM.png)
 
+
 ### Home Screen
 ![Home screen](https://github.com/yogeshpadekar/TweetNotification/blob/master/Screenshots/Simulator%20Screen%20Shot%2006-Nov-2016%2C%206.17.59%20PM.png)
 
+
 ### Tweet List
 ![Tweet List](https://github.com/yogeshpadekar/TweetNotification/blob/master/Screenshots/Simulator%20Screen%20Shot%2006-Nov-2016%2C%2011.59.10%20PM.png)
+
 
 ### Tweet Notification
 ![Tweet Notification](https://github.com/yogeshpadekar/TweetNotification/blob/master/Screenshots/Simulator%20Screen%20Shot%2006-Nov-2016%2C%206.14.38%20PM.png)
