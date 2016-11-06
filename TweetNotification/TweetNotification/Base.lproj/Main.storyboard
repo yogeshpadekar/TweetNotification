@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2x6-8o-7kh">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--TweetNotification-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="SearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="Enter tag to search (without #)" translatesAutoresizingMaskIntoConstraints="NO" id="hAo-Ps-RhW">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="LiV-en-EKf"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="VIs-4T-oGj"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s4j-CK-RGO">
+                                <rect key="frame" x="0.0" y="44" width="320" height="372"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="fJ3-Ab-vgJ"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="boi-9g-Y9j"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="s4j-CK-RGO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="HfV-h4-KXt"/>
+                            <constraint firstItem="hAo-Ps-RhW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="HqW-Cp-8T7"/>
+                            <constraint firstAttribute="trailing" secondItem="s4j-CK-RGO" secondAttribute="trailing" id="IK9-L9-syP"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="s4j-CK-RGO" secondAttribute="bottom" id="Jzd-3i-ibD"/>
+                            <constraint firstAttribute="trailing" secondItem="hAo-Ps-RhW" secondAttribute="trailing" id="L5c-NW-bq4"/>
+                            <constraint firstItem="s4j-CK-RGO" firstAttribute="top" secondItem="hAo-Ps-RhW" secondAttribute="bottom" id="WG4-nE-IWs"/>
+                            <constraint firstItem="hAo-Ps-RhW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="iBj-r4-SvV"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="TweetNotification" id="YB4-Qz-fFs"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="srchbarTweet" destination="hAo-Ps-RhW" id="ItX-Qh-o22"/>
+                        <outlet property="tblTweets" destination="s4j-CK-RGO" id="fs4-VG-nI2"/>
+                        <outlet property="view" destination="8bC-Xf-vdC" id="k2f-Xl-0Mz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="595" y="187"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3fs-Ig-oUG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2x6-8o-7kh" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="480"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="VGL-VL-V9a">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <color key="barTintColor" red="0.33333333333333331" green="0.67450980392156867" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="j57-Gb-rOV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yIB-qx-k16" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="198" y="187"/>
+        </scene>
+    </scenes>
+</document>
