@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		9A4C7FAE1DCBB08D00196E64 /* DataAccess.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A4C7FAD1DCBB08D00196E64 /* DataAccess.h */; };
 		9A4C7FB01DCBB08D00196E64 /* DataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4C7FAF1DCBB08D00196E64 /* DataAccess.m */; };
-		9A90BA531DCDCB82005469BC /* libEntity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A90BA521DCDCB82005469BC /* libEntity.a */; };
+		9AD8B05E1DCF522700991939 /* libEntity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD8B05D1DCF522700991939 /* libEntity.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,8 +29,7 @@
 		9A4C7FAA1DCBB08D00196E64 /* libDataAccess.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDataAccess.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4C7FAD1DCBB08D00196E64 /* DataAccess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataAccess.h; sourceTree = "<group>"; };
 		9A4C7FAF1DCBB08D00196E64 /* DataAccess.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataAccess.m; sourceTree = "<group>"; };
-		9A4C7FCD1DCBB18300196E64 /* libEntity.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEntity.a; path = "../Entity/build/Debug-iphoneos/libEntity.a"; sourceTree = "<group>"; };
-		9A90BA521DCDCB82005469BC /* libEntity.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEntity.a; path = "../Entity/build/Debug-iphoneos/libEntity.a"; sourceTree = "<group>"; };
+		9AD8B05D1DCF522700991939 /* libEntity.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEntity.a; path = "../Entity/build/Debug-iphoneos/libEntity.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A90BA531DCDCB82005469BC /* libEntity.a in Frameworks */,
+				9AD8B05E1DCF522700991939 /* libEntity.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,8 +47,7 @@
 		9A4C7FA11DCBB08D00196E64 = {
 			isa = PBXGroup;
 			children = (
-				9A90BA521DCDCB82005469BC /* libEntity.a */,
-				9A4C7FCD1DCBB18300196E64 /* libEntity.a */,
+				9AD8B05D1DCF522700991939 /* libEntity.a */,
 				9A4C7FAC1DCBB08D00196E64 /* DataAccess */,
 				9A4C7FAB1DCBB08D00196E64 /* Products */,
 			);

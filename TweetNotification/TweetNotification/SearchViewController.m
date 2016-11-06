@@ -3,22 +3,38 @@
 //  TweetNotification
 //
 //  Created by Yogesh on 03/11/16.
-//  Copyright © 2016 Yogesh. All rights reserved.
+//  Copyright © 2016 Yogesh Padekar. All rights reserved.
 //
+//Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+//documentation files (the "Software"), to deal in the Software without restriction, including without
+//limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+//Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+//The above copyright notice and this permission notice shall be included in all copies or substantial
+//portions of the Software.
+//
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+//LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO
+//EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+//AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+//OR OTHER DEALINGS IN THE SOFTWARE.
 
 #import "SearchViewController.h"
 #import <DataAccess/DataAccess.h>
 #import "AppDelegate.h"
+#import <Social/Social.h>
 
 #define CellIdentifier @"Cell"
 
 @interface SearchViewController ()<UISearchBarDelegate, UITableViewDataSource> {
     IBOutlet UISearchBar *srchbarTweet;
-    NSString *strAccessToken;
     IBOutlet UITableView *tblTweets;
     NSArray *arrTweets;
 }
-- (void)presentOKAlertWithMessage:(NSString*)strMessage;
+
+///Method to present an alert taking Message, Cancel title and UIAlertAction array as parameters
+- (void)presentAlertWithMessage:(NSString*)strMessage cancelTitle:(NSString*)strCancelTitle andActions:
+(NSArray*)arrActions;
 
 @end
 
@@ -27,13 +43,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    //table view settings
     tblTweets.rowHeight = UITableViewAutomaticDimension;
-    tblTweets.estimatedRowHeight = 60.0;
+    tblTweets.estimatedRowHeight = 100.0;
     UIImageView *imgviwBackground = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"SearchBackground"]];
     imgviwBackground.contentMode = UIViewContentModeCenter;
     imgviwBackground.backgroundColor = [UIColor colorWithRed:227/255.0 green:1.0 blue:1.0 alpha:1.0];
     tblTweets.backgroundView = imgviwBackground;
     imgviwBackground = nil;
+    
     }
 
 - (void)didReceiveMemoryWarning {
@@ -42,34 +61,67 @@
 }
 
 #pragma mark - User defined methods
-- (void)presentOKAlertWithMessage:(NSString*)strMessage {
-    UIAlertController *alt = [UIAlertController alertControllerWithTitle:[[NSBundle mainBundle]
-                                                                          objectForInfoDictionaryKey:
-                                                                          @"CFBundleDisplayName"]
-                                                                           message:strAccessToken
+
+///Method to present an alert taking Message, Cancel title and UIAlertAction array as parameters
+- (void)presentAlertWithMessage:(NSString*)strMessage cancelTitle:(NSString*)strCancelTitle andActions:
+(NSArray*)arrActions {
+    UIAlertController *alt = [UIAlertController alertControllerWithTitle:[[[NSBundle mainBundle] infoDictionary]
+                                                                          objectForKey:(NSString *)kCFBundleNameKey]
+                                                                           message:strMessage
                                                                     preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction
-                               actionWithTitle:NSLocalizedString(@"OK", @"OK action")
+                               actionWithTitle:NSLocalizedString(strCancelTitle, @"Cancel action")
                                style:UIAlertActionStyleCancel
                                handler:nil];
     [alt addAction:okAction];
+    
+    for(UIAlertAction *action in arrActions) {
+        [alt addAction:action];
+    }
+    
     [self presentViewController:alt animated:YES completion:nil];
 }
 
 
 #pragma mark - Search bar delegate methods
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
 
+///Method to call Search functionality
+- (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
     if(searchBar.text.length > 0) {
+        
+        //If there is no twitter account configured then ask user to do so
+        if(![DataAccess twitterAccountConfigured]) {
+            
+            UIAlertAction *goToTwitterSettingsAction = [UIAlertAction
+                                                        actionWithTitle:NSLocalizedString
+                                                        (@"Go to TweetNotification settings", @"Go to twitter action")
+                                                        style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction * _Nonnull action) {
+                                                            
+                                                            dispatch_async(dispatch_get_main_queue(), ^{
+                                                                [[UIApplication sharedApplication] openURL:
+                                                                 [NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                                            });
+                                                            
+                                                        }];
+            [self presentAlertWithMessage:@"Please configure twitter account (Settings -> Twitter) to start using the app"
+                              cancelTitle:@"Cancel" andActions:[NSArray arrayWithObject:
+                                                                goToTwitterSettingsAction]];
+            goToTwitterSettingsAction = nil;
+            return;
+        }
+        
+        //If twitter account is configured then search for the given hashtag
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         [DataAccess loadHashtagQueryForHashTag:searchBar.text withCallback:^(NSArray *response, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [DataAccess makeLastTweetIdEmpty];
                 app.strHashtag = searchBar.text;
                 if(error) {
-                    [self presentOKAlertWithMessage:@"Error while fetching tweets"];
+                    [self presentAlertWithMessage:@"Error while fetching tweets" cancelTitle:@"OK" andActions:nil];
                 } else {
                     
                     arrTweets = response[1];
@@ -82,10 +134,6 @@
     }
 }
 
-- (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
-}
-
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
     return YES;
@@ -94,6 +142,7 @@
 #pragma mark - UITableView datasource methods
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     [srchbarTweet resignFirstResponder];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -113,9 +162,9 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.imageView.image = [UIImage imageNamed:@"TweetIcon"];
     }
-    
+    //Cells with alternate background colors
     cell.contentView.backgroundColor = (indexPath.row % 2) ? [UIColor whiteColor] :
-    [UIColor colorWithRed:85/255.0 green:172/255.0 blue:238/255.0 alpha:0.3];
+    [UIColor colorWithRed:150/255.0 green:1.0 blue:1.0 alpha:0.3];
 
     Statuses *objStatus = arrTweets[indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", objStatus.user.name ,objStatus.text];    

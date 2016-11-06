@@ -3,14 +3,28 @@
 //  TweetNotification
 //
 //  Created by Yogesh on 03/11/16.
-//  Copyright © 2016 Riddhesh. All rights reserved.
+//  Copyright © 2016 Yogesh Padekar. All rights reserved.
 //
+//Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+//documentation files (the "Software"), to deal in the Software without restriction, including without
+//limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+//Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+//The above copyright notice and this permission notice shall be included in all copies or substantial
+//portions of the Software.
+//
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+//LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO
+//EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN
+//AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+//OR OTHER DEALINGS IN THE SOFTWARE.
+
 
 #import "AppDelegate.h"
 #import <DataAccess/DataAccess.h>
 
 @interface AppDelegate ()
-
+- (void)setNotificationForStatus:(Statuses*)objStatus;
 @end
 
 @implementation AppDelegate
@@ -19,11 +33,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    //Register for local notifications
     [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:
                                                    UIUserNotificationTypeAlert|
                                                    UIUserNotificationTypeSound categories:nil]];
-    [application registerForRemoteNotifications];
 
+    //set the minimum duration for background fetch
     [application setMinimumBackgroundFetchInterval:5];
     return YES;
 }
@@ -56,6 +71,7 @@
     if(!self.strHashtag)
         return;
     
+    //Call the tweets for given hashtag and if there is any new tweet then set the notifications for tham
     [DataAccess loadHashtagQueryForHashTag:self.strHashtag withCallback:^(NSArray *response, NSError *error) {
         
         //if there are no unseen tweets then return
@@ -72,6 +88,8 @@
 }
 
 #pragma mark - Method to set local notification
+
+///Method to set local notifications
 - (void)setNotificationForStatus:(Statuses*)objStatus {
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:3];

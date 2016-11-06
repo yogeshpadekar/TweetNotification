@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TweetNotification/TweetNotification/SearchViewController.m"
-            timestampString = "500111978.122439"
+            filePath = "TweetNotification/TweetNotification/AppDelegate.m"
+            timestampString = "500129039.010955"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "-scrollViewWillBeginDragging:"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "-application:performFetchWithCompletionHandler:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

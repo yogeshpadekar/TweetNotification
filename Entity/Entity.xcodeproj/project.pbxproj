@@ -21,20 +21,20 @@
 		9A90BA4F1DCDCB02005469BC /* Thumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A90BA3F1DCDCB02005469BC /* Thumb.m */; settings = {ASSET_TAGS = (); }; };
 		9A90BA501DCDCB02005469BC /* Tweets.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A90BA411DCDCB02005469BC /* Tweets.m */; settings = {ASSET_TAGS = (); }; };
 		9A90BA511DCDCB02005469BC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A90BA431DCDCB02005469BC /* User.m */; settings = {ASSET_TAGS = (); }; };
-		9A90BA541DCDCC94005469BC /* DescriptionClass.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA281DCDCB02005469BC /* DescriptionClass.h */; };
-		9A90BA551DCDCC94005469BC /* Entities.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA2A1DCDCB02005469BC /* Entities.h */; };
-		9A90BA561DCDCC94005469BC /* ExtendedEntities.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA2C1DCDCB02005469BC /* ExtendedEntities.h */; };
-		9A90BA571DCDCC94005469BC /* Hashtags.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA2E1DCDCB02005469BC /* Hashtags.h */; };
-		9A90BA581DCDCC94005469BC /* Large.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA301DCDCB02005469BC /* Large.h */; };
-		9A90BA591DCDCC94005469BC /* Media.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA321DCDCB02005469BC /* Media.h */; };
-		9A90BA5A1DCDCC94005469BC /* Medium.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA341DCDCB02005469BC /* Medium.h */; };
-		9A90BA5B1DCDCC94005469BC /* Metadata.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA361DCDCB02005469BC /* Metadata.h */; };
-		9A90BA5C1DCDCC94005469BC /* Sizes.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA381DCDCB02005469BC /* Sizes.h */; };
-		9A90BA5D1DCDCC94005469BC /* Small.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA3A1DCDCB02005469BC /* Small.h */; };
-		9A90BA5E1DCDCC94005469BC /* Statuses.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA3C1DCDCB02005469BC /* Statuses.h */; };
-		9A90BA5F1DCDCC94005469BC /* Thumb.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA3E1DCDCB02005469BC /* Thumb.h */; };
 		9A90BA601DCDCC94005469BC /* Tweets.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA401DCDCB02005469BC /* Tweets.h */; };
 		9A90BA611DCDCC94005469BC /* User.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA421DCDCB02005469BC /* User.h */; };
+		9AD8B05F1DCF54DD00991939 /* DescriptionClass.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA281DCDCB02005469BC /* DescriptionClass.h */; };
+		9AD8B0601DCF54DD00991939 /* Entities.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA2A1DCDCB02005469BC /* Entities.h */; };
+		9AD8B0611DCF54DD00991939 /* ExtendedEntities.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA2C1DCDCB02005469BC /* ExtendedEntities.h */; };
+		9AD8B0621DCF54DD00991939 /* Hashtags.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA2E1DCDCB02005469BC /* Hashtags.h */; };
+		9AD8B0631DCF54DD00991939 /* Large.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA301DCDCB02005469BC /* Large.h */; };
+		9AD8B0641DCF54DD00991939 /* Media.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA321DCDCB02005469BC /* Media.h */; };
+		9AD8B0651DCF54DD00991939 /* Medium.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA341DCDCB02005469BC /* Medium.h */; };
+		9AD8B0661DCF54DD00991939 /* Metadata.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA361DCDCB02005469BC /* Metadata.h */; };
+		9AD8B0671DCF54DD00991939 /* Sizes.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA381DCDCB02005469BC /* Sizes.h */; };
+		9AD8B0681DCF54DD00991939 /* Small.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA3A1DCDCB02005469BC /* Small.h */; };
+		9AD8B0691DCF54DD00991939 /* Statuses.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA3C1DCDCB02005469BC /* Statuses.h */; };
+		9AD8B06A1DCF54DD00991939 /* Thumb.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9A90BA3E1DCDCB02005469BC /* Thumb.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,18 +44,18 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				9A90BA541DCDCC94005469BC /* DescriptionClass.h in CopyFiles */,
-				9A90BA551DCDCC94005469BC /* Entities.h in CopyFiles */,
-				9A90BA561DCDCC94005469BC /* ExtendedEntities.h in CopyFiles */,
-				9A90BA571DCDCC94005469BC /* Hashtags.h in CopyFiles */,
-				9A90BA581DCDCC94005469BC /* Large.h in CopyFiles */,
-				9A90BA591DCDCC94005469BC /* Media.h in CopyFiles */,
-				9A90BA5A1DCDCC94005469BC /* Medium.h in CopyFiles */,
-				9A90BA5B1DCDCC94005469BC /* Metadata.h in CopyFiles */,
-				9A90BA5C1DCDCC94005469BC /* Sizes.h in CopyFiles */,
-				9A90BA5D1DCDCC94005469BC /* Small.h in CopyFiles */,
-				9A90BA5E1DCDCC94005469BC /* Statuses.h in CopyFiles */,
-				9A90BA5F1DCDCC94005469BC /* Thumb.h in CopyFiles */,
+				9AD8B05F1DCF54DD00991939 /* DescriptionClass.h in CopyFiles */,
+				9AD8B0601DCF54DD00991939 /* Entities.h in CopyFiles */,
+				9AD8B0611DCF54DD00991939 /* ExtendedEntities.h in CopyFiles */,
+				9AD8B0621DCF54DD00991939 /* Hashtags.h in CopyFiles */,
+				9AD8B0631DCF54DD00991939 /* Large.h in CopyFiles */,
+				9AD8B0641DCF54DD00991939 /* Media.h in CopyFiles */,
+				9AD8B0651DCF54DD00991939 /* Medium.h in CopyFiles */,
+				9AD8B0661DCF54DD00991939 /* Metadata.h in CopyFiles */,
+				9AD8B0671DCF54DD00991939 /* Sizes.h in CopyFiles */,
+				9AD8B0681DCF54DD00991939 /* Small.h in CopyFiles */,
+				9AD8B0691DCF54DD00991939 /* Statuses.h in CopyFiles */,
+				9AD8B06A1DCF54DD00991939 /* Thumb.h in CopyFiles */,
 				9A90BA601DCDCC94005469BC /* Tweets.h in CopyFiles */,
 				9A90BA611DCDCC94005469BC /* User.h in CopyFiles */,
 			);
