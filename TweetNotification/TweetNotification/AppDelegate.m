@@ -39,7 +39,7 @@
                                                    UIUserNotificationTypeSound categories:nil]];
 
     //set the minimum duration for background fetch
-    [application setMinimumBackgroundFetchInterval:5];
+    [application setMinimumBackgroundFetchInterval:5.0];
     return YES;
 }
 
@@ -75,14 +75,17 @@
     [DataAccess loadHashtagQueryForHashTag:self.strHashtag withCallback:^(NSArray *response, NSError *error) {
         
         //if there are no unseen tweets then return
-        if([response[0] intValue] == 0)
+        if([response[0] intValue] == 0) {
+            completionHandler(UIBackgroundFetchResultNewData);
             return;
+        }
         
         //Schedule notifications for new tweets
         NSArray *arrStatuses = response[1];
         for (Statuses *objStatus in arrStatuses) {
             [self setNotificationForStatus:objStatus];
         }
+        completionHandler(UIBackgroundFetchResultNewData);
     }];
    
 }
