@@ -40,14 +40,6 @@ static void(^getTweetsResponseForHashtagCallback)(NSArray *response, NSError *er
 
 @implementation DataAccess
 
-///Method to check if the twitter account is configured
-+ (BOOL)twitterAccountConfigured {
-    ACAccountType *accountType = [self.accountStore accountTypeWithAccountTypeIdentifier:
-                                  ACAccountTypeIdentifierTwitter];
-    NSArray *accounts = [self.accountStore accountsWithAccountType:accountType];
-    return accounts.count > 0;
-}
-
 ///Method to create an object of class ACAccountStore
 + (ACAccountStore *)accountStore
 {
@@ -96,6 +88,17 @@ static void(^getTweetsResponseForHashtagCallback)(NSArray *response, NSError *er
                                                                                             parameters:parameters];
                                                
                                                NSArray *accounts = [self.accountStore accountsWithAccountType:accountType];
+
+                                               //if there are no twitter accounts configured then return with error
+                                               if(accounts.count == 0) {
+                                                   getTweetsResponseForHashtagCallback(nil, [NSError
+                                                                                             errorWithDomain:
+                                                                                             @"Configuration"
+                                                                                             code:-1 userInfo:
+  @{@"Description" : @"No twitter account found"}]);
+                                                   return;
+                                               }
+
                                                slRequest.account = [accounts lastObject];
                                                NSURLRequest *request = [slRequest preparedURLRequest];
                                                
