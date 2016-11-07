@@ -35,6 +35,4 @@ typedef void (^TweetsCompletionBlock)(NSArray *response, NSError *error);
 ///Method to set the identifier storing id of last tweet to empty
 + (void)makeLastTweetIdEmpty;
 
-///Method to check if the twitter account is configured
-+ (BOOL)twitterAccountConfigured;
 @end
