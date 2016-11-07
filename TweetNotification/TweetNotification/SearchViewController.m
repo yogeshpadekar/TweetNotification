@@ -89,31 +89,8 @@
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [searchBar resignFirstResponder];
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    
+
     if(searchBar.text.length > 0) {
-        
-        //If there is no twitter account configured then ask user to do so
-        if(![DataAccess twitterAccountConfigured]) {
-            
-            UIAlertAction *goToTwitterSettingsAction = [UIAlertAction
-                                                        actionWithTitle:NSLocalizedString
-                                                        (@"Go to TweetNotification settings", @"Go to twitter action")
-                                                        style:UIAlertActionStyleDefault
-                                                        handler:^(UIAlertAction * _Nonnull action) {
-                                                            
-                                                            dispatch_async(dispatch_get_main_queue(), ^{
-                                                                [[UIApplication sharedApplication] openURL:
-                                                                 [NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                                                            });
-                                                            
-                                                        }];
-            [self presentAlertWithMessage:@"Please configure twitter account (Settings -> Twitter) to start using the app"
-                              cancelTitle:@"Cancel" andActions:[NSArray arrayWithObject:
-                                                                goToTwitterSettingsAction]];
-            goToTwitterSettingsAction = nil;
-            return;
-        }
-        
         //If twitter account is configured then search for the given hashtag
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         [DataAccess loadHashtagQueryForHashTag:searchBar.text withCallback:^(NSArray *response, NSError *error) {
@@ -121,9 +98,33 @@
                 [DataAccess makeLastTweetIdEmpty];
                 app.strHashtag = searchBar.text;
                 if(error) {
-                    [self presentAlertWithMessage:@"Error while fetching tweets" cancelTitle:@"OK" andActions:nil];
+                    if(error.code == -1) {
+
+                        //if there is no twitter account configured in the settings then ask the user to
+                        //configure one before using the app
+                        UIAlertAction *goToTwitterSettingsAction = [UIAlertAction
+                                                                    actionWithTitle:NSLocalizedString
+                                                                    (@"Go to TweetNotification settings",
+                                                                     @"Go to twitter action")
+                                                                    style:UIAlertActionStyleDefault
+                                                                    handler:^(UIAlertAction * _Nonnull action) {
+
+                                                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                                                            [[UIApplication sharedApplication]
+                                                                             openURL:
+                                                                             [NSURL URLWithString:
+                                                                              UIApplicationOpenSettingsURLString]];
+                                                                        });
+
+                                                                    }];
+                        [self presentAlertWithMessage:@"Please configure twitter account (Settings -> Twitter) to start using the app"
+                                          cancelTitle:@"Cancel" andActions:[NSArray arrayWithObject:
+                                                                            goToTwitterSettingsAction]];
+                        goToTwitterSettingsAction = nil;
+                    } else
+                        [self presentAlertWithMessage:@"Error while fetching tweets" cancelTitle:@"OK" andActions:nil];
                 } else {
-                    
+
                     arrTweets = response[1];
                     [tblTweets reloadData];
                 }
